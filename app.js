@@ -15,14 +15,14 @@ var cfenv = require('cfenv');
 
 // create a new express server
 var app = express();
+app.use(bodyParser.json());
 
 app.get('/get', function (req, res) {
   res.send({string01: 'string01!'});
 });
 app.post('/post', function (req, res) {
-  res.send(req.body);
+  res.send({req:req.body});
 });
-app.use(bodyParser.json());
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
@@ -34,4 +34,5 @@ var appEnv = cfenv.getAppEnv();
 app.listen(appEnv.port, '0.0.0.0', function () {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
+  console.log("3!");
 });
