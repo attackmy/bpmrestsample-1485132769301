@@ -24,12 +24,12 @@ app.post('/post', function (req, res) {
   var ret = {};
   for (var key in req.body) {
     if (typeof req.body[key] == 'string') {
-      ret = req.body[key] + '!';
+      ret[key] = req.body[key] + '!';
     } else {
-      ret = req.body[key];
+      ret[key] = req.body[key];
     }
   }
-  res.send(res);
+  res.send(ret);
 });
 
 // serve the files out of ./public as our main files
@@ -42,5 +42,5 @@ var appEnv = cfenv.getAppEnv();
 app.listen(appEnv.port, '0.0.0.0', function () {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
-  console.log("4!");
+  console.log("5!");
 });
