@@ -21,7 +21,15 @@ app.get('/get', function (req, res) {
   res.send({string01: 'string01!'});
 });
 app.post('/post', function (req, res) {
-  res.send({req:req.body});
+  var ret = {};
+  for (var key in req.body) {
+    if (typeof req.body[key] == 'string') {
+      ret = req.body[key] + '!';
+    } else {
+      ret = req.body[key];
+    }
+  }
+  res.send(res);
 });
 
 // serve the files out of ./public as our main files
@@ -34,5 +42,5 @@ var appEnv = cfenv.getAppEnv();
 app.listen(appEnv.port, '0.0.0.0', function () {
   // print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
-  console.log("3!");
+  console.log("4!");
 });
